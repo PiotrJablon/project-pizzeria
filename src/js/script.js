@@ -109,7 +109,6 @@
     initOrderForm(){
       const thisProduct = this;
 
-      console.log('initOrderForm')
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
         thisProduct.processOrder();
@@ -128,7 +127,35 @@
     processOrder(){
       const thisProduct = this;
 
-      console.log('processOrder')
+      const formData = utils.serializeFormToObject(thisProduct.form);
+
+      // set price to default price
+      let price = thisProduct.data.price;
+
+      // for every category (param)...
+      for(let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+
+        // for every option in this category
+        for(let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+
+          if(formData[paramId] && formData[paramId].includes(optionId)) {
+            if(option != 'default') {
+              price += option.price
+            }
+          } else {
+            if (option == 'default') {
+              price -=option.price
+            }
+          }
+        }
+      }
+
+      // update calculated price in the HTML
+      thisProduct.priceElem.innerHTML = price;
     }
   }
 
