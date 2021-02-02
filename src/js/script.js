@@ -33,7 +33,7 @@
     },
   };
 
-  const classNames = {
+  /*const classNames = {
     menuProduct: {
       wrapperActive: 'active',
       imageVisible: 'active',
@@ -46,7 +46,7 @@
       defaultMin: 1,
       defaultMax: 9,
     }
-  };
+  };*/
 
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
@@ -112,17 +112,17 @@
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
         thisProduct.processOrder();
-      })
+      });
 
       for (let input of thisProduct.formInputs){
         input.addEventListener('change', function(){
           thisProduct.processOrder();
-        })
+        });
       }
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
-      })
+      });
     }
     processOrder(){
       const thisProduct = this;
@@ -144,11 +144,11 @@
 
           if(formData[paramId] && formData[paramId].includes(optionId)) {
             if(option != 'default') {
-              price += option.price
+              price += option.price;
             }
           } else {
             if (option == 'default') {
-              price -=option.price
+              price -=option.price;
             }
           }
         }
