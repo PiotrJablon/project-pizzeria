@@ -130,12 +130,12 @@
           console.log(option.price)
 
           if(formData[paramId] && formData[paramId].includes(optionId)) {
-            if(option != 'default') {
+            if(!option.default) {
               price += option.price;
             }
           } else {
-            if (option == 'default') {
-              price -=option.price;
+            if (option.default) {
+              price -= option.price;
             }
           }
         }
