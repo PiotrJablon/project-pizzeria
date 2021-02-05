@@ -40,8 +40,8 @@
   const settings = {
     amountWidget: {
       defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9,
+      defaultMin: 0,
+      defaultMax: 10,
     }
   };
 
@@ -159,7 +159,6 @@
           }
         }
       }
-
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
       // update calculated price in the HTML
@@ -179,9 +178,6 @@
     constructor(element){
       const thisWidget = this;
 
-      console.log('AmountWidget' , thisWidget);
-      console.log('constructor arguments', element);
-
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
@@ -199,13 +195,13 @@
 
       const newValue = parseInt(value);
 
-      if (thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
-        thisWidget.value = newValue;
+      if (settings.amountWidget.defaultValue !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
+        settings.amountWidget.defaultValue = newValue;
       }
 
       thisWidget.announce();
 
-      thisWidget.input.value = thisWidget.value;
+      thisWidget.input.value = settings.amountWidget.defaultValue;
     }
     initActions(){
       const thisWidget = this;
@@ -215,11 +211,11 @@
       });
       thisWidget.linkDecrease.addEventListener('click', function(event){
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value - 1);
+        thisWidget.setValue(settings.amountWidget.defaultValue - 1);
       });
       thisWidget.linkIncrease.addEventListener('click', function(event){
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value + 1);
+        thisWidget.setValue(settings.amountWidget.defaultValue + 1);
       });
     }
     announce(){
