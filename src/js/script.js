@@ -201,6 +201,7 @@
 
       thisWidget.announce();
 
+      thisWidget.value = newValue;
       thisWidget.input.value = settings.amountWidget.defaultValue;
     }
     initActions(){
