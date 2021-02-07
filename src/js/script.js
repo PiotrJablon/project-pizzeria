@@ -340,8 +340,6 @@
       const menuContainer = document.querySelector(select.containerOf.cart);
 
       menuContainer.appendChild(thisCart.element);
-
-      console.log('adding product', menuProduct);
     }
   }
 
