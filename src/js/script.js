@@ -297,7 +297,9 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -332,19 +334,23 @@
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle('active');
       });
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
+      });
     }
     add(menuProduct){
       const thisCart = this;
 
       const generatedHTML = templates.cartProduct(menuProduct);
 
-      thisCart.element = utils.createDOMFromHTML(generatedHTML);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
-      const menuContainer = document.querySelector(select.containerOf.cart);
+      const menuContainer = thisCart.dom.productList;
+      console.log(menuContainer)
 
-      menuContainer.appendChild(thisCart.element);
+      menuContainer.appendChild(generatedDOM);
 
-      thisCart.products.push(new CartProduct(menuProduct, thisCart.element));
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       thisCart.update();
     }
     update(){
@@ -367,10 +373,6 @@
       thisCart.dom.subTotalPrice.innerHTML = subtotalPrice;
       thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
       thisCart.dom.totalNumber.innerHTML = totalNumber;
-      console.log(subtotalPrice);
-      console.log(totalNumber);
-      console.log(deliveryFee);
-      console.log(thisCart.totalPrice);
     }
   }
 
