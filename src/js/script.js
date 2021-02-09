@@ -380,9 +380,13 @@
       const thisCart = this;
 
       const elementIndex = thisCart.products.indexOf(cartProduct);
-      thisCart.products.splice(elementIndex, 1);
-      cartProduct.dom.wrapper.remove();
-      thisCart.update();
+      if (elementIndex === -1){
+        return remove(cartProduct);
+      } else if(elementIndex > -1){
+        thisCart.products.splice(elementIndex, 1);
+        cartProduct.dom.wrapper.remove();
+        thisCart.update();
+      }
     }
   }
 
