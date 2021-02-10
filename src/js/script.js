@@ -381,12 +381,11 @@
 
       const elementIndex = thisCart.products.indexOf(cartProduct);
       if (elementIndex === -1){
-        return remove(cartProduct);
-      } else if(elementIndex > -1){
-        thisCart.products.splice(elementIndex, 1);
-        cartProduct.dom.wrapper.remove();
-        thisCart.update();
+        return;
       }
+      thisCart.products.splice(elementIndex, 1);
+      cartProduct.dom.wrapper.remove();
+      thisCart.update();
     }
   }
 
