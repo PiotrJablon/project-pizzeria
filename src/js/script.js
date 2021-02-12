@@ -423,12 +423,7 @@
         body: JSON.stringify(payload),
       };
 
-      fetch(url, options)
-        .then(function(response){
-          return response.json();
-        }).then(function(parsedResponse){
-          console.log('parsedResponse', parsedResponse);
-        });
+      fetch(url, options);
     }
   }
 
@@ -523,8 +518,6 @@
           return rawResponse.json();
         })
         .then(function(parsedResponse){
-          /* console.log('parsedResponse', parsedResponse) */
-
           /* save parsedResponse as thisApp.data.products */
           thisApp.data.products = parsedResponse;
 
@@ -532,8 +525,6 @@
           thisApp.initMenu();
 
         });
-
-      /* console.log('thisApp.data', JSON.stringify(thisApp.data)); */
       thisApp.data = {};
     },
 
