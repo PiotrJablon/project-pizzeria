@@ -15,7 +15,7 @@ const app = {
     let pageMatchingHash = thisApp.pages[0].id;
 
     for (let page of thisApp.pages){
-      if (page.id == idFromHash){
+      if (page.id === idFromHash){
         pageMatchingHash = page.id;
         break;
       }
@@ -43,13 +43,13 @@ const app = {
 
     /* add class 'active' to matching pages, remove from non-matching */
     for (let page of thisApp.pages){
-      page.classList.toggle('active', page.id == pageId);
+      page.classList.toggle('active', page.id === pageId);
     }
     /* add class 'active' to matching links, remove from non-matching */
     for (let link of thisApp.navLinks){
       link.classList.toggle(
         'active',
-        link.getAttribute('href') == '#' + pageId
+        link.getAttribute('href') === '#' + pageId
       );
     }
   },
@@ -95,7 +95,7 @@ const app = {
   },
 
   initBooking: function(){
-    const thisApp = this;
+    // const thisApp = this;
 
     const bookingWrapper = document.querySelector(select.containerOf.booking);
 
