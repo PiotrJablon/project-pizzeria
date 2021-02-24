@@ -114,9 +114,9 @@ class Booking{
     let allAvailable = false;
 
     if(
-      typeof thisBooking.booked[thisBooking.date] === 'undefined'
+      !thisBooking.booked[thisBooking.date]
       ||
-      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined'
+      !thisBooking.booked[thisBooking.date][thisBooking.hour]
     ){
       allAvailable = true;
     }
@@ -185,7 +185,6 @@ class Booking{
     const thisBooking = this;
 
     const clickedElement = event.target;
-    console.log(thisBooking.starters)
 
     if(clickedElement.classList.contains('table')){
       const tableNumber = clickedElement.getAttribute('data-table');
@@ -218,7 +217,7 @@ class Booking{
       address: thisBooking.dom.address.value,
     };
     for(let starter of thisBooking.dom.starters) {
-      if(starter.checked === true){
+      if(starter.checked){
         payload.starters.push(starter.value);
       }
     }
