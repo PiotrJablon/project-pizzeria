@@ -11,6 +11,7 @@ export const select = {
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    home: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -64,10 +65,19 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    allTables: '.floor-plan',
+    form: '.booking-form',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+    starters: '[name="starter"]',
   },
   nav: {
     links: '.main-nav a',
   },
+  home: {
+    order: '.order-box',
+    book: '.book-box',
+  }
 };
 
 export const settings = {
@@ -90,8 +100,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//localhost:3131',
-    product: 'product',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),    product: 'product',
     order: 'order',
     booking: 'booking',
     event: 'event',
