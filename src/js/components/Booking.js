@@ -230,7 +230,11 @@ class Booking{
     };
 
     fetch(url, options)
-    .then(thisBooking.booked);
+      .then(function(response){
+        if (response.ok) {
+          thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        }
+      });
   }
 }
 
